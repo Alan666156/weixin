@@ -12,10 +12,18 @@ public class Users extends AbstractEntity{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String userName;
-	private String email;
-	private String tel;
-	private String address;
+	private String name;//真实姓名
+	private String userName;//昵称
+	private String email;//邮箱
+	private String mobile;//电话
+	private String address;//地址
+	private String openId;//openid(微信分配给每个用户的一个标识)
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getUserName() {
 		return userName;
 	}
@@ -28,11 +36,11 @@ public class Users extends AbstractEntity{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getTel() {
-		return tel;
+	public String getMobile() {
+		return mobile;
 	}
-	public void setTel(String tel) {
-		this.tel = tel;
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 	public String getAddress() {
 		return address;
@@ -40,7 +48,12 @@ public class Users extends AbstractEntity{
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+	public String getOpenId() {
+		return openId;
+	}
+	public void setOpenId(String openId) {
+		this.openId = openId;
+	}
 	
 
 }

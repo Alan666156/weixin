@@ -2,10 +2,6 @@ package com.weixin.config;
 
 
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.context.embedded.ErrorPage;
@@ -13,40 +9,20 @@ import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
-import com.weixin.directive.ParamEncryptDirective;
 import com.weixin.filter.HTMLCharacterFilter;
-
-import freemarker.template.TemplateModelException;
 
 
 @Configuration
-//@EnableRedisHttpSession
+@EnableRedisHttpSession
 public class WebConfig {
 	
-	@Autowired
-	private FreeMarkerConfigurer freeMarkerConfigurer;
-	
 	/**
-	 * 加载自定义freemarker指令
+	 * 自定义过滤器
+	 * @param filter
+	 * @return
 	 */
-	@Bean
-	public ParamEncryptDirective paramEncryptDirective() {
-		ParamEncryptDirective paramEncryptDirective = null;
-		try {
-			paramEncryptDirective = new ParamEncryptDirective();
-			Map<String, Object> variables = new HashMap<String, Object>();
-			variables.put("encrypt", paramEncryptDirective);
-			freeMarkerConfigurer.setFreemarkerVariables(variables);
-			freeMarkerConfigurer.getConfiguration().setSharedVariable("encrypt", paramEncryptDirective);
-			freeMarkerConfigurer.getConfiguration().setSharedVaribles(variables);
-		} catch (TemplateModelException e) {
-			e.printStackTrace();
-		}
-		return paramEncryptDirective;
-	}
-	
 	@Bean
 	public FilterRegistrationBean registration(HTMLCharacterFilter filter) {
 	    FilterRegistrationBean registration = new FilterRegistrationBean(filter);
@@ -54,6 +30,10 @@ public class WebConfig {
 	    return registration;
 	}
 	
+	/**
+	 * 错误异常页面
+	 * @return
+	 */
 	@Bean
 	public EmbeddedServletContainerCustomizer containerCustomizer() {
 

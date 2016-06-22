@@ -1,49 +1,61 @@
 package com.weixin.config;
 
+import me.chanjar.weixin.mp.api.WxMpConfigStorage;
+import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
+import me.chanjar.weixin.mp.api.WxMpService;
+import me.chanjar.weixin.mp.api.WxMpServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import com.foxinmy.weixin4j.exception.WeixinException;
-import com.foxinmy.weixin4j.model.WeixinAccount;
-import com.foxinmy.weixin4j.mp.WeixinProxy;
-import com.foxinmy.weixin4j.mp.api.OauthApi;
-import com.foxinmy.weixin4j.mp.token.WeixinTokenCreator;
-import com.foxinmy.weixin4j.token.TokenHolder;
-import com.foxinmy.weixin4j.token.TokenStorager;
-
+import org.springframework.data.redis.core.RedisTemplate;
+/**
+ * 微信初始化相关配置
+ * @author Alan Fu
+ * @date 2016年6月20日
+ * @version 0.0.1
+ */
 @Configuration
 public class WeixinConfig {
-
+	
+	@Value("${spring.redis.host}")
+	private String host;
+	@Value("${spring.redis.port}")
+	private int port;
+	@Value("${weixin.app.id}")
+	private String appid;
+	@Value("${weixin.app.secret}")
+	private String secret;
+	@Value("${weixin.app.token}")
+	private String token;
+	@Value("${weixin.app.token}")
+	private String appUrl;
+	
 	@Autowired
-	private TokenStorager redisTokenStorager;
+	private RedisTemplate<String, String> redisTemplate;
 	
 	/**
-	 * 初始化微信appid、secret
+	 * 初始化微信相关配置
 	 * @return
 	 */
 	@Bean
-	public WeixinAccount weixinAccount(){
-		WeixinAccount wxAccount = new WeixinAccount(System.getProperty("weixin.app.appid"),System.getProperty("weixin.app.secret"));
-		return wxAccount;
+	public WxMpConfigStorage wxMpConfigStorage(){
+		WxMpInMemoryConfigStorage config = new WxMpInMemoryConfigStorage();
+		config.setAppId(appid); // 设置微信公众号的appid
+		config.setSecret(secret); // 设置微信公众号的app corpSecret
+		config.setToken(token); // 设置微信公众号的token
+		config.setOauth2redirectUri(appUrl + "/authorize-callback"); //回调地址
+		return config;
 	}
 	
-	@Bean
-	public WeixinProxy weixinProxy() throws WeixinException{
-		WeixinProxy proxy =  new WeixinProxy ();
-		return proxy;
-	}
-	
-	@Bean
-	public OauthApi oauthApi(){
-		return new OauthApi();
-	}
 	@Autowired
-	private WeixinProxy proxy;
+	private WxMpConfigStorage wxMpInMemoryConfigStorage;
 	
-	@Bean 
-	public TokenHolder weixinJSTicketTokenHolder() throws WeixinException{
-		TokenHolder jsTokenHolder = new TokenHolder(new WeixinTokenCreator(System.getProperty("weixin.app.appid"),System.getProperty("weixin.app.secret")), redisTokenStorager);
-		return jsTokenHolder;
+	@Bean
+	public WxMpService wxMpService(){
+		WxMpService wxMpService = new WxMpServiceImpl();
+		wxMpService.setWxMpConfigStorage(wxMpConfigStorage());
+		return wxMpService;
 	}
 }

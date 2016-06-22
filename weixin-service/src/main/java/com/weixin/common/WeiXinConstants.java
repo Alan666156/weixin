@@ -7,5 +7,6 @@ package com.weixin.common;
  * @version 0.0.1
  */
 public class WeiXinConstants {
-
+	public static final String REGISTER = "注册";
+	public static final String I_WANT_REGISTER = "我要注册";
 }

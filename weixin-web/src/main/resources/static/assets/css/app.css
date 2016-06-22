@@ -1,0 +1,33 @@
+/* Write your styles */
+html,
+body {
+    background-color: #efede6;
+    font-size: 14px;
+	position:relative;
+	font-family:"Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;
+}
+
+.qq-container {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 480px;
+}
+.movDetail,.givetime{ background:#fff; padding:15px 0;}
+.movinfo{ color:#666;}
+.list{ margin:6px 0; font-size:16px;}
+.list .val{ color:#cccccc;}
+.list .buyrmb{ color:#c7024b;}
+.list .brand{ color:#595757; margin-left:10px;}
+.givetime{ font-size:16px; color:#333;}
+.code{ text-align:center; background:#c7024b; padding-top:5px; padding-bottom:20px;}
+
+@media screen and (max-width:320px){
+	.movinfo{font-size:12px;}
+	.list{ margin:6px 0; font-size:14px;}
+	.givetime{ font-size:14px; color:#333;}
+	
+	}

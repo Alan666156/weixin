@@ -21,7 +21,7 @@
 	<Loggers>
 		<Logger name="org.apache.log4j.xml" level="info" />
 		<!-- project default level -->
-		<logger name="com.snowstore.jupiter" level="debug" />
+		<logger name="com.weixin" level="debug" />
 		<logger name="org.springframework" level="info" />
 
 		<!--log4jdbc -->

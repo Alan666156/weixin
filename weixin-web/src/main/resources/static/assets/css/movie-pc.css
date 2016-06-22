@@ -1,0 +1,161 @@
+html,body,img,div,span,h3,ul,li,p{
+	padding: 0;
+	margin: 0;
+}
+html,body{
+	width: 100%;
+	background-color: #fff;
+	font-family: "微软雅黑";
+}
+li{
+	list-style: none;
+}
+
+
+.header{
+	width: 100%;
+}
+.header img{
+	width: 100%;
+}
+.layout1-box{
+	width: 100%;
+	height: 140px;
+	background-color: #efede6;
+}
+.center{
+	margin: 0 auto;
+	width: 1000px;
+}
+
+.layout2{
+	padding-top: 60px;
+	padding-left: 24px;
+	box-sizing: border-box;
+}
+.layout2 div{
+	display: inline-block;
+	vertical-align: top;
+}
+.layout2-right{
+	padding-top: 4px;
+	margin-left: 40px;
+	color: #333;
+}
+.layout2-right h3{
+	padding-left: 72px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 30px;
+	background: url(../../images/ka_06.jpg) no-repeat 0 center;
+}
+.layout2-right p{
+	margin-top: 28px;
+	width: 560px;
+	line-height: 38px;
+	letter-spacing: 1px;
+	font-size: 20px;
+}
+
+.layout3-box{
+	width: 100%;
+	height: 650px;
+	background-color: #efede6;
+}
+.layout3{
+	padding-top: 46px;
+	padding-left: 34px;
+	box-sizing: border-box;
+}
+.layout3 div{
+	display: inline-block;
+	vertical-align: top;
+}
+.layout3-left{
+	width: 479px;
+}
+.layout3-left h3{
+	padding-left: 72px;
+	height: 52px;
+	line-height: 52px;
+	font-size: 30px;
+	background: url(../../images/ka2_10.jpg) no-repeat 0 center;
+}
+.layout3-left h3.last{
+	margin-top: 10px;
+	padding-left: 84px;
+	height: 64px;
+	line-height: 64px;
+	font-size: 30px;
+	background: url(../../images/ka3_23.jpg) no-repeat 0 center;
+}
+.layout3-left ul{
+	margin-top: 20px;
+}
+.layout3-left ul li{
+	font-size: 16px;
+	color: #333;
+	line-height: 28px;
+}
+
+.layout4{
+	padding-top: 50px;
+	padding-left: 36px;
+	box-sizing: border-box;
+	height: 770px;
+	text-align: center;
+}
+.layout4 h3{
+	padding-left: 68px;
+	padding-top: 43px;
+	box-sizing: border-box;
+	height: 86px;
+	text-align: left;
+	font-size: 30px;
+	background: url(../../images/ka4_08.jpg) no-repeat 0 center;
+}
+.layout4 img{
+	margin-top: 46px;
+}
+
+.fixed-box{
+	position:fixed;
+	z-index:666;
+	display:none;
+	width: 100%;
+	height: 180px;
+	bottom:0;
+	left:0;
+	}
+
+
+.footer-box{
+	padding-top: 38px;
+	box-sizing: border-box;
+	width: 100%;
+	height: 180px;
+	background-color: #c7024b;
+}
+.footer{
+	position: relative;
+	text-align: center;
+}
+.footer-box p{
+	text-align: center;
+	font-size: 46px;
+	color: #fff;
+}
+.erweima{
+	position: absolute;
+	right: 46px;
+	top: -96px;
+	width: 150px;
+}
+.erweima p{
+	margin-top: 10px;
+	letter-spacing: 2px;
+	font-size: 16px;
+	text-align: center;
+	line-height: 24px;
+}
+
