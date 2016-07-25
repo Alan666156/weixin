@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.core.RedisTemplate;
 /**
  * 微信初始化相关配置
  * @author Alan Fu
@@ -32,8 +31,8 @@ public class WeixinConfig {
 	@Value("${weixin.app.token}")
 	private String appUrl;
 	
-	@Autowired
-	private RedisTemplate<String, String> redisTemplate;
+//	@Autowired
+//	private RedisTemplate<String, String> redisTemplate;
 	
 	/**
 	 * 初始化微信相关配置

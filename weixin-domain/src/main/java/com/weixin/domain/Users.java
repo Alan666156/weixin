@@ -2,7 +2,12 @@ package com.weixin.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
+/**
+ * 用户实体
+ * @author Alan Fu
+ * @date 2016年7月22日
+ * @version 0.0.1
+ */
 @Entity
 @Table(name="wx_users")
 public class Users extends AbstractEntity{
@@ -14,10 +19,19 @@ public class Users extends AbstractEntity{
 	
 	private String name;//真实姓名
 	private String userName;//昵称
+	private String passward;//密码
 	private String email;//邮箱
 	private String mobile;//电话
 	private String address;//地址
 	private String openId;//openid(微信分配给每个用户的一个标识)
+	
+	public Users() {
+		super();
+	}
+	public Users(String openId) {
+		super();
+		this.openId = openId;
+	}
 	public String getName() {
 		return name;
 	}
@@ -29,6 +43,12 @@ public class Users extends AbstractEntity{
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public String getPassward() {
+		return passward;
+	}
+	public void setPassward(String passward) {
+		this.passward = passward;
 	}
 	public String getEmail() {
 		return email;

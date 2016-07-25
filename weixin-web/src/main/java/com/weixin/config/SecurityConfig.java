@@ -1,5 +1,7 @@
 package com.weixin.config;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -44,4 +46,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 * auth.userDetailsService(localUserDetailServiceImpl).passwordEncoder(
 	 * passwordEncoder); }
 	 */
+	
+	public static void main(String[] args) {
+		String address = "dubbo.registry.address=zookeeper://127.0.0.1:2181|127.0.0.1:2182|127.0.0.1:2183";
+		String[] as = address.split("\\s*[|]+\\s*");
+		System.out.println(as.length+Arrays.toString(as));
+	}
 }

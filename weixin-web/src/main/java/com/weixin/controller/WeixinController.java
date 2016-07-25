@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 import com.weixin.common.WeiXinConstants;
 import com.weixin.service.UserService;
+import com.weixin.service.WeiXinService;
 import com.weixin.utils.Result;
 
 
@@ -39,6 +40,9 @@ public class WeixinController {
 	
 	@Autowired
 	private WxMpService wxMpService;
+	
+	@Autowired
+	private WeiXinService weiXinService;
 	
 	/**
 	 * 微信签名 加密/校验流程如下： 
@@ -96,6 +100,12 @@ public class WeixinController {
 			String eventKey = root.elementText("EventKey");
 			String messageType = root.elementText("MsgType");
 			String content = root.elementText("Content");
+			//关注
+			if ("subscribe".equals(event)) {
+				// 用户关注推送消息
+				return weiXinService.userSubscribe(openId, eventKey, root);
+			}
+			
 			//单击注册菜单
 			if (content != null && (WeiXinConstants.REGISTER.equals(content.replaceAll(" ", "")) || WeiXinConstants.I_WANT_REGISTER.equals(content.replaceAll(" ", "")))) {
 				LOGGER.info("注册");

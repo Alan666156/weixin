@@ -1,6 +1,14 @@
 package com.weixin.service;
 
+import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -24,7 +32,7 @@ public class UserService {
 	public Users getCurrentUser() {
 		Authentication authen = SecurityContextHolder.getContext().getAuthentication();
 		if (!"anonymousUser".equals(authen.getPrincipal())) {
-			return loadById(((Users) authen.getPrincipal()).getId());
+			return findById(((Users) authen.getPrincipal()).getId());
 		} else {
 			return null;
 		}
@@ -45,11 +53,21 @@ public class UserService {
 	 * @param id 用户ID
 	 * @return 用户
 	 */
-	public Users loadById(Long id) {
+	public Users findById(Long id) {
 		return usersDao.findOne(id);
 	}
 	
-	
+	public List<Users> findAll() {
+		return usersDao.findAll(new Specification<Users>() {
+			
+			@Override
+			public Predicate toPredicate(Root<Users> root, CriteriaQuery<?> query,
+					CriteriaBuilder cb) {
+				
+				return query.getRestriction();
+			}
+		});
+	}
 	/**
 	 * 保存用户登录会话
 	 * @param openId	微信openId
@@ -58,5 +76,18 @@ public class UserService {
 	 */
 	public synchronized void pushUserToSecurity(String openId, String mobile, String platform) {
 		
+	}
+
+	public Users findUserByOpenId(String openId) {
+		return null;
+	}
+
+	public void save(Users user) {
+		usersDao.save(user);
+	}
+
+	public Users findByUserName(String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

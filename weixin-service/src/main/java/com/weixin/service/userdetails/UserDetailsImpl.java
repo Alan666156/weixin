@@ -16,7 +16,6 @@ public class UserDetailsImpl extends Users implements UserDetails{
 	 */
 	private static final long serialVersionUID = -7442692309456432678L;
 	
-	private String openId;
 	private Map<String ,Object> transitData = new HashMap<String, Object>();
 	private Long unionUserId;
 	
@@ -56,14 +55,6 @@ public class UserDetailsImpl extends Users implements UserDetails{
 	@Override
 	public boolean isEnabled() {
 		return true;
-	}
-
-	public String getOpenId() {
-		return openId;
-	}
-
-	public void setOpenId(String openId) {
-		this.openId = openId;
 	}
 
 	public Map<String, Object> getTransitData() {

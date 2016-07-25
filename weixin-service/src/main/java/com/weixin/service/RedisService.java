@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.stereotype.Service;
 
 /**
  * redis 工具类
@@ -17,9 +16,11 @@ import org.springframework.stereotype.Service;
  * @date:   2016年1月12日
  * @version 1.0.0
  */
-@Service
+//@Service
 public class RedisService {
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(RedisService.class);
+	
 	@Autowired
 	private RedisTemplate<String, String> redisTemplate;
 
